@@ -135,7 +135,7 @@
                 "annotations": [],
                 "type": "AzureDatabricks",
                 "typeProperties": {
-                    "domain": "https://adb-510898907879080.0.azuredatabricks.net",
+                    "domain": "https://adb-.0.azuredatabricks.net",
                     "accessToken": {
                         "type": "AzureKeyVaultSecret",
                         "store": {
@@ -144,7 +144,7 @@
                         },
                         "secretName": "DBXToken"
                     },
-                    "existingClusterId": "0627-el48jn3a"
+                    "existingClusterId": "0627-"
                 }
             },
             "dependsOn": [
