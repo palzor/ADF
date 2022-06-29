@@ -29,11 +29,11 @@
         },
         "AzureDataLakeStorage_properties_typeProperties_url": {
             "type": "string",
-            "defaultValue": "https://bnz101sa.dfs.core.windows.net/"
+            "defaultValue": "https://bnz101.dfs.core.windows.net/"
         },
         "AzureKeyVault_properties_typeProperties_baseUrl": {
             "type": "string",
-            "defaultValue": "https://POCKeyVault.vault.azure.net/"
+            "defaultValue": "https://KeyVault.vault.azure.net/"
         }
     },
     "variables": {
