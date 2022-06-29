@@ -1,0 +1,91 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "factoryName": {
+            "type": "string",
+            "metadata": "Data Factory name",
+            "defaultValue": "ADWADF"
+        },
+        "AzureSqlDatabase_connectionString": {
+            "type": "secureString",
+            "metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase'"
+        },
+        "AzureBlobStorage_connectionString": {
+            "type": "secureString",
+            "metadata": "Secure string for 'connectionString' of 'AzureBlobStorage'"
+        },
+        "AzureDatabricksDeltaLake_accessToken": {
+            "type": "secureString",
+            "metadata": "Secure string for 'accessToken' of 'AzureDatabricksDeltaLake'"
+        },
+        "AzureDataLakeStorage_accountKey": {
+            "type": "secureString",
+            "metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage'"
+        },
+        "AzureTableStorage_connectionString": {
+            "type": "secureString",
+            "metadata": "Secure string for 'connectionString' of 'AzureTableStorage'"
+        },
+        "AzureDataLakeStorage_properties_typeProperties_url": {
+            "type": "string",
+            "defaultValue": "https://bnz.dfs.core.windows.net/"
+        },
+        "AzureKeyVault_properties_typeProperties_baseUrl": {
+            "type": "string",
+            "defaultValue": "https://POCKeyVault.vault.azure.net/"
+        },
+        "containerUri": {
+            "type": "string",
+            "metadata": "URI to storage account containing linked ARM templates"
+        },
+        "containerSasToken": {
+            "type": "string",
+            "metadata": "Sas token to storage account containing linked ARM templates"
+        }
+    },
+    "variables": {
+        "factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+    },
+    "resources": [
+        {
+            "name": "ADWADF_ArmTemplate_0",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2018-02-01",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "factoryName": {
+                        "value": "[parameters('factoryName')]"
+                    },
+                    "AzureSqlDatabase_connectionString": {
+                        "value": "[parameters('AzureSqlDatabase_connectionString')]"
+                    },
+                    "AzureBlobStorage_connectionString": {
+                        "value": "[parameters('AzureBlobStorage_connectionString')]"
+                    },
+                    "AzureDatabricksDeltaLake_accessToken": {
+                        "value": "[parameters('AzureDatabricksDeltaLake_accessToken')]"
+                    },
+                    "AzureDataLakeStorage_accountKey": {
+                        "value": "[parameters('AzureDataLakeStorage_accountKey')]"
+                    },
+                    "AzureTableStorage_connectionString": {
+                        "value": "[parameters('AzureTableStorage_connectionString')]"
+                    },
+                    "AzureDataLakeStorage_properties_typeProperties_url": {
+                        "value": "[parameters('AzureDataLakeStorage_properties_typeProperties_url')]"
+                    },
+                    "AzureKeyVault_properties_typeProperties_baseUrl": {
+                        "value": "[parameters('AzureKeyVault_properties_typeProperties_baseUrl')]"
+                    }
+                }
+            },
+            "dependsOn": []
+        }
+    ]
+}
